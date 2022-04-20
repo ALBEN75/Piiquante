@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const userRoutes = require('./routes/user');
+const saucesRoutes = require('./routes/sauces');
 
 mongoose.connect('mongodb+srv://ALBEN75:8YncWXhcAFLcXhTL@cluster1.ywky0.mongodb.net/Cluster1?retryWrites=true&w=majority',
   { useNewUrlParser: true,
@@ -25,5 +26,6 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 app.use('/api/auth', userRoutes);
+app.use('/api/sauces', saucesRoutes);
 
 module.exports = app;
