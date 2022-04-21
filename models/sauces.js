@@ -1,5 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose');// On importe mongoose pour pouvoir utiliser la methode schéma et la méthode model.
 
+// On utilise la methode Schéma de Mongoose contenant nos données pour les differents champs d'une sauce et leurs types.
 const sauceSchema = mongoose.Schema ({
     userId: { type: String, required: true, },
     name: { type: String, required: true },
@@ -14,4 +15,4 @@ const sauceSchema = mongoose.Schema ({
     usersDisliked: [ String ]
 });
 
-module.exports = mongoose.model('Sauce', sauceSchema);
+module.exports = mongoose.model('Sauce', sauceSchema);// On exporte et on utilise la méthode model de Mongoose qui transforme notre schéma en un modèle utilisable.
