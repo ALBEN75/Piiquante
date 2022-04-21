@@ -13,7 +13,6 @@ mongoose.connect('mongodb+srv://ALBEN75:8YncWXhcAFLcXhTL@cluster1.ywky0.mongodb.
   .catch(() => console.log("Connexion à MongoDB échouée !"));
 
 const app = express();
-app.use(express.json());
 
 /* Ceci permettra à l'application d'accèder à notre API.
 Donne l'accès de notre API à tous le monde, on autorise d'utiliser certain Headers sur l'objet requête et d'envoyer certaines méthodes de requête(verbes de requête).*/ 
