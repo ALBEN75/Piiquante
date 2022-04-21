@@ -1,7 +1,7 @@
-const express = require('express');// On Importe le framework express qui sert à construire des applications web pour Node.js.
-const bodyParser = require('body-parser');// Analyse le corp d'une requête entrant afin qu'il n'y est pas d'erreus.
-const mongoose = require('mongoose');// Constante qui nous servira de connexion a MangoDB afin d'utiliser des operations CRUD.
-const path = require('path');// On se sert de path qui nous permettra a travailer avec les chemins de fichiers et de répertoires. 
+const express = require('express');// On importe le framework express qui sert à construire des applications web pour Node.js.
+const bodyParser = require('body-parser');// On importe body-parser qui sert analyser le corp d'une requête entrante afin qu'il n'y est pas d'erreus.
+const mongoose = require('mongoose');// On importe mongoose qui nous servira de connexion a MangoDB afin d'utiliser des operations CRUD.
+const path = require('path');// On importe path qui nous permettra de travailer avec les chemins de fichiers et de répertoires. 
 
 // Déclaration de nos routes pour les utilisateurs et les sauces.
 const userRoutes = require('./routes/user');
