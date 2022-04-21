@@ -33,13 +33,9 @@ exports.modifySauce = (req, res, next) => {
             ...JSON.parse(req.body.sauce),
             imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
         } : { ...req.body };
-        if (sauce.userId === req.token.userId) {
-            Sauce.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id })
-                .then(() => res.status(200).json({ message: 'Modification éffectuée !'}))
-                .catch(error => res.status(400).json({ error }));
-        /*} else {
-            res.status(403).json({ message: 'Modification non autorisée !'})
-        */}
+        Sauce.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id })
+            .then(() => res.status(200).json({ message: 'Modification éffectuée !'}))
+        .catch(error => res.status(400).json({ error }));
     })
     .catch(error => res.status(500).json({ error }));
 };
@@ -47,16 +43,12 @@ exports.modifySauce = (req, res, next) => {
 exports.deleteSauce = (req, res, next) => {     
     Sauce.findOne({ _id: req.params.id })
     .then(sauce => {
-        if (sauce.userId === req.token.userId) {
-            const filename = sauce.imageUrl.split('/images/')[1];
-            fs.unlink(`images/${filename}`, () => {
-                Sauce.deleteOne({ _id: req.params.id })
-                    .then(() => res.status(200).json({ message: ' Suppression effectuée !'}))
-                    .catch(error => res.status(400).json({ error }));
-            });
-        } else {
-            res.status(401).json({ message: 'Suppression non autorisée !'})
-        }  
+        const filename = sauce.imageUrl.split('/images/')[1];
+        fs.unlink(`images/${filename}`, () => {
+            Sauce.deleteOne({ _id: req.params.id })
+                .then(() => res.status(200).json({ message: ' Suppression effectuée !'}))
+                .catch(error => res.status(400).json({ error }));
+        });    
     })
     .catch(error => res.status(500).json({ error }));
 };
