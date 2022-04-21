@@ -7,4 +7,4 @@ const userCtrl = require('../controllers/user');// On importe nos fonctions pour
 router.post('/signup', userCtrl.signup);// Route pour l'inscription de l'utilisateur.
 router.post('/login', userCtrl.login);// Route pour la connexion de l'utilisateur.
 
-module.exports = router; // On exporte notre router pour pouvoir l'utiliser.
+module.exports = router; // On exporte notre routeur finale pour pouvoir l'utiliser.
