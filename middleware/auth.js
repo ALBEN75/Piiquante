@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');// On importe notre package jsonwebtoken pou
 module.exports = (req, res, next) => {
   try {
     const token = req.headers.authorization.split(' ')[1];// On récupère le token dans le headers d'authorization de la requête. 
-    const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');// jwt décode le token puis le vérifie avec la fonction verify à l'aide de la clé secrète.
+    const decodedToken = jwt.verify(token, '4GU4SP-!bOm*f$Pl');// jwt décode le token puis le vérifie avec la fonction verify à l'aide de la clé secrète.
     const userId = decodedToken.userId;// On récupere donc le token décodé de l'utilisateur.
     
     // Si la demande contient un ID utilisteur on le compare a celui du token, si ils sont différents on génére une erreur.
