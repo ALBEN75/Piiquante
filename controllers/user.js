@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');// On importe le package bcrypt, pour crypté le mot de passe(hash) de l'utilisateur.
 const jwt = require('jsonwebtoken');// On importe le package jsonwebtoken, pour générer un jeton d'accès(token) encodé à notre utilisateur lors de l'inscription et de le vérifier par la suite lors de la connexion.
 
-const User = require('../models/user');// On importe notre fichier user.js de notre dossier models, puisque on va devoir enregistrer des utilisateurs(signup) et lire des utilisateurs(login) dans nos middlewares.
+const User = require('../models/user');// On importe notre fichier user.js de notre dossier models contenant le model, puisque on va devoir enregistrer des utilisateurs(signup) et lire des utilisateurs(login) dans nos middlewares.
 
 // Middleware pour l'inscription(ou enregistrement) de l'utilisateur.
 exports.signup = (req, res, next) => {
@@ -13,7 +13,7 @@ exports.signup = (req, res, next) => {
           email: req.body.email,
           password: hash// Mot de passe crypté (hash). 
         });
-        user.save()// On utilise la méthode save pour enregistrer l'utilisateur dans la bas de données. 
+        user.save()// On utilise la méthode save pour enregistrer l'utilisateur dans la base de données. 
           .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
           .catch(error => res.status(400).json({ error }));
       })
