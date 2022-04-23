@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');// On importe body-parser qui sert ana
 const mongoose = require('mongoose');// On importe mongoose qui nous servira de connexion a MangoDB afin d'utiliser des operations CRUD.
 const path = require('path');// On importe path qui nous permettra de travailer avec les chemins de fichiers et de répertoires. 
 const helmet = require("helmet");// On importe le package helmet qui nous permet de protéger notre application contre certaines vulnérabilités notamment les failles XSS.
+const nocache = require("nocache"); // On importe le package nocache qui essaye de désactiver la mise en cache côté client.
 require('dotenv').config();// On importe le package dotenv pour pouvoir utiliser par la suite la ou les variable(s) d'environnement.
 
 // Déclaration de nos routes pour les utilisateurs et les sauces.
@@ -38,6 +39,9 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 // Middleware qui nous permet d'utiliser nos routes de notre API, pour les utilisateurs et les sauces.
 app.use('/api/auth', userRoutes);
 app.use('/api/sauces', saucesRoutes);
+
+// Ce middleware Express définit certains en-têtes de réponse HTTP pour essayer de désactiver la mise en cache côté client.
+app.use(nocache());
 
 // On exporte a l'aide du module notre application.
 module.exports = app;
