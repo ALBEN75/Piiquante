@@ -2,6 +2,7 @@ const express = require('express');// On importe le framework express qui sert �
 const bodyParser = require('body-parser');// On importe body-parser qui sert analyser le corp d'une requête entrante afin qu'il n'y est pas d'erreus.
 const mongoose = require('mongoose');// On importe mongoose qui nous servira de connexion a MangoDB afin d'utiliser des operations CRUD.
 const path = require('path');// On importe path qui nous permettra de travailer avec les chemins de fichiers et de répertoires. 
+const helmet = require("helmet");// On importe le package helmet qui nous permet de protéger notre application contre certaines vulnérabilités notamment les failles XSS.
 
 // Déclaration de nos routes pour les utilisateurs et les sauces.
 const userRoutes = require('./routes/user');
@@ -14,8 +15,9 @@ mongoose.connect('mongodb+srv://ALBEN75:8YncWXhcAFLcXhTL@cluster1.ywky0.mongodb.
   .then(() => console.log("Connexion à MongoDB réussie !"))
   .catch(() => console.log("Connexion à MongoDB échouée !"));
 
-// Déclaration de notre const app pour créer une application express.
-const app = express();
+const app = express(); // Déclaration de notre const app pour créer une application express.
+
+app.use(helmet());// On déclare helmet pour l'utiliser, qui permettra de protéger notre application contre certaines vulnérabilités.
 
 /* Ceci permettra à l'application d'accèder à notre API.
 Donne l'accès de notre API à tous le monde, on autorise d'utiliser certain Headers sur l'objet requête et d'envoyer certaines méthodes de requête(verbes de requête).*/ 
