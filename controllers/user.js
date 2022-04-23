@@ -1,5 +1,7 @@
 const bcrypt = require('bcrypt');// On importe le package bcrypt, pour crypté le mot de passe(hash) de l'utilisateur.
+const { error } = require('console');
 const jwt = require('jsonwebtoken');// On importe le package jsonwebtoken, pour générer un jeton d'accès(token) encodé à notre utilisateur lors de l'inscription et de le vérifier par la suite lors de la connexion.
+require('dotenv').config();// On importe le package dotenv pour pouvoir utiliser par la suite la ou les variable(s) d'environnement.
 
 const User = require('../models/user');// On importe notre fichier user.js de notre dossier models contenant le model, puisque on va devoir enregistrer des utilisateurs(signup) et lire des utilisateurs(login) dans nos middlewares.
 
@@ -41,7 +43,7 @@ exports.login = (req, res, next) => {
               userId: user._id, // Donnée stockant l'ID de l'utilisateur.
               token: jwt.sign( // On utilise la fonction sign, pour encodés les données de l'utilisateur dans le token.
                 { userId: user._id }, // Encodage de l'Id de l'utilisateur. 
-                '4GU4SP-!bOm*f$Pl', // Clé secrète pour securiser l'encodage.
+                process.env.TOKEN, // Variable d'environnement contenant sa clé secrète encodé.
                 { expiresIn: '24h' } // Expiration du token générer pour l'utilisateur.
               )
             });
