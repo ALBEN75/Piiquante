@@ -10,5 +10,6 @@ router.get('/:id', auth, sauceCtrl.getOneSauce);// Route pour obtenir une sauce 
 router.get('/', auth, sauceCtrl.getAllSauces);// Route pour obtenir toutes les sauces de l'API. 
 router.put('/:id', auth, multer, sauceCtrl.modifySauce);// Route pour modfier une sauce ajoutée par son utilisateur. 
 router.delete('/:id', auth, sauceCtrl.deleteSauce);// Route pour supprimer une sauce ajoutée par son utilisateur.
+router.post('/:id', auth, sauceCtrl.likeOrNotSauce);// Route pour noter(like or dislike) une sauce par utilisateur.
 
 module.exports = router;// On exporte notre routeur finale pour pouvoir l'utiliser. 
