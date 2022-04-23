@@ -3,18 +3,19 @@ const bodyParser = require('body-parser');// On importe body-parser qui sert ana
 const mongoose = require('mongoose');// On importe mongoose qui nous servira de connexion a MangoDB afin d'utiliser des operations CRUD.
 const path = require('path');// On importe path qui nous permettra de travailer avec les chemins de fichiers et de répertoires. 
 const helmet = require("helmet");// On importe le package helmet qui nous permet de protéger notre application contre certaines vulnérabilités notamment les failles XSS.
+require('dotenv').config();// On importe le package dotenv pour pouvoir utiliser par la suite la ou les variavle(s) d'environnement.
 
 // Déclaration de nos routes pour les utilisateurs et les sauces.
 const userRoutes = require('./routes/user');
 const saucesRoutes = require('./routes/sauces');
 
-// On appel notre const mongoose pour nous connecter à la base de données MangoDB.
-mongoose.connect('mongodb+srv://ALBEN75:8YncWXhcAFLcXhTL@cluster1.ywky0.mongodb.net/Cluster1?retryWrites=true&w=majority',
+// On appel notre const mongoose pour nous connecter à la base de données MangoDB et on utilise une variable d'environnement pour sécuriser nos informations de connexion.
+mongoose.connect( process.env.MangoDB,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log("Connexion à MongoDB réussie !"))
   .catch(() => console.log("Connexion à MongoDB échouée !"));
-
+  
 const app = express(); // Déclaration de notre const app pour créer une application express.
 
 app.use(helmet());// On déclare helmet pour l'utiliser, qui permettra de protéger notre application contre certaines vulnérabilités.
