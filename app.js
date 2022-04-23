@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');// On importe body-parser qui sert ana
 const mongoose = require('mongoose');// On importe mongoose qui nous servira de connexion a MangoDB afin d'utiliser des operations CRUD.
 const path = require('path');// On importe path qui nous permettra de travailer avec les chemins de fichiers et de répertoires. 
 const helmet = require("helmet");// On importe le package helmet qui nous permet de protéger notre application contre certaines vulnérabilités notamment les failles XSS.
-require('dotenv').config();// On importe le package dotenv pour pouvoir utiliser par la suite la ou les variavle(s) d'environnement.
+require('dotenv').config();// On importe le package dotenv pour pouvoir utiliser par la suite la ou les variable(s) d'environnement.
 
 // Déclaration de nos routes pour les utilisateurs et les sauces.
 const userRoutes = require('./routes/user');
