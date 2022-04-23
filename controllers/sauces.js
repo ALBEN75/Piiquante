@@ -61,6 +61,6 @@ exports.deleteSauce = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));
 };
 
-exports.userNotation = (req, res, next) => {
+exports.likeOrNotSauce = (req, res, next) => {
     
 };
