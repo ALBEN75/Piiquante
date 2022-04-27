@@ -19,9 +19,7 @@ mongoose.connect( process.env.MangoDB,
   
 const app = express(); // Déclaration de notre const app pour créer une application express.
 
-app.use(helmet());// On déclare helmet pour l'utiliser, qui permettra de protéger notre application contre certaines vulnérabilités.
-
-/* Ceci permettra à l'application d'accèder à notre API.
+/* Ceci permettra à l'application d'accèder à notre API, et aussi sa permettra à nos deux serveur de communiquer entre eux.
 Donne l'accès de notre API à tous le monde, on autorise d'utiliser certain Headers sur l'objet requête et d'envoyer certaines méthodes de requête(verbes de requête).*/ 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -35,6 +33,8 @@ app.use(bodyParser.json());
 
 // Ce middleware nous permet de charger les fichiers d'images dans le répertoire images.
 app.use('/images', express.static(path.join(__dirname, 'images')));
+
+app.use(helmet());// On déclare helmet pour l'utiliser, qui permettra de protéger notre application contre certaines vulnérabilités.
 
 // Middleware qui nous permet d'utiliser nos routes de notre API, pour les utilisateurs et les sauces.
 app.use('/api/auth', userRoutes);
