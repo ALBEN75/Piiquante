@@ -15,6 +15,10 @@ module.exports = (req, res, next) => {
       next(); // Sinon dans le cas contraire ils sont identiques et l'utilisateur est authentifié donc on passe à l'éxecution avec la fonction next().
     }
   } catch {
+<<<<<<< HEAD
     res.status(403).json({ error: new Error ('Utilisateur non authorisée !') });// On génére une erreur 401 car la requête néccessite une authenfication valide. 
+=======
+    res.status(403).json({ error: new Error ('Requête non authorisée !') });// On génére une erreur 401 car la requête néccessite une authenfication valide. 
+>>>>>>> 360cd20273d2ffb2a7d3a8272f5bc82c4d762c58
   }
 };
